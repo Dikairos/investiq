@@ -1,6 +1,6 @@
 import type { Company } from "@/data/companies";
 
-const seriesColors = ["#34d399", "#38bdf8", "#fbbf24", "#c084fc"];
+const seriesColors = ["#6541C1", "#23966B", "#9276C8", "#85808D"];
 const chartWidth = 720;
 const chartHeight = 280;
 const padding = { top: 16, right: 20, bottom: 42, left: 58 };
@@ -43,7 +43,7 @@ function hasCompatibleAmountUnits(companies: Company[]) {
 
 function EmptyChart({ message }: { message: string }) {
   return (
-    <div className="flex min-h-56 items-center justify-center rounded-xl border border-dashed border-slate-700 bg-slate-950/60 p-6 text-center text-sm text-slate-400">
+    <div className="flex min-h-56 items-center justify-center border border-dashed border-[#DCD6E5] bg-[#FBFAFF] p-6 text-center text-sm text-[#777281]">
       {message}
     </div>
   );
@@ -55,7 +55,7 @@ function ChartLegend({ companies }: { companies: Company[] }) {
       {companies.map((company, index) => (
         <span
           key={company.ticker}
-          className="inline-flex items-center gap-2 text-xs text-slate-400"
+          className="inline-flex items-center gap-2 text-xs text-[#777281]"
         >
           <span
             aria-hidden="true"
@@ -126,13 +126,13 @@ export function HistoricalRevenueBars({
                   x2={chartWidth - padding.right}
                   y1={tickY}
                   y2={tickY}
-                  stroke="#334155"
+                  stroke="#E9E5EF"
                   strokeDasharray="4 6"
                 />
                 <text
                   x={padding.left - 10}
                   y={tickY + 4}
-                  fill="#94a3b8"
+                  fill="#96919F"
                   fontSize="11"
                   textAnchor="end"
                 >
@@ -167,7 +167,7 @@ export function HistoricalRevenueBars({
                       y={y(point.revenue)}
                       width={barWidth}
                       height={barHeight}
-                      rx="3"
+                      rx="1"
                       fill={seriesColors[companyIndex]}
                     >
                       <title>
@@ -248,13 +248,13 @@ export function HistoricalNetIncomeLines({
                   x2={chartWidth - padding.right}
                   y1={tickY}
                   y2={tickY}
-                  stroke="#334155"
+                  stroke="#E9E5EF"
                   strokeDasharray="4 6"
                 />
                 <text
                   x={padding.left - 10}
                   y={tickY + 4}
-                  fill="#94a3b8"
+                  fill="#96919F"
                   fontSize="11"
                   textAnchor="end"
                 >
@@ -287,7 +287,7 @@ export function HistoricalNetIncomeLines({
                   stroke={seriesColors[companyIndex]}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="3"
+                  strokeWidth="2.5"
                 />
                 {companyPoints.map(
                   (point, index) =>
@@ -296,7 +296,7 @@ export function HistoricalNetIncomeLines({
                         key={point.year}
                         cx={x(index)}
                         cy={y(point.netIncome)}
-                        r="4"
+                        r="3.5"
                         fill={seriesColors[companyIndex]}
                       >
                         <title>
@@ -315,7 +315,7 @@ export function HistoricalNetIncomeLines({
               key={year}
               x={x(index)}
               y={chartHeight - 12}
-              fill="#94a3b8"
+              fill="#96919F"
               fontSize="12"
               textAnchor="middle"
             >

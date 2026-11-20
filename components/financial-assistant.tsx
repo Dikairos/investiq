@@ -260,38 +260,40 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl shadow-black/20">
-      <div className="flex flex-col gap-3 border-b border-slate-800 p-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <div className="surface-card overflow-hidden">
+      <div className="flex flex-col gap-4 border-b border-[#E9E5EF] p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
-            <Bot aria-hidden="true" size={20} />
+          <span className="flex h-9 w-9 items-center justify-center rounded-[5px] bg-[#EEE9F8] text-[#6541C1]">
+            <Bot aria-hidden="true" size={18} />
           </span>
           <div>
-            <h2 className="font-semibold text-white">Financial assistant</h2>
-            <p className="text-xs text-slate-500">
+            <h2 className="text-sm font-semibold text-[#302C39]">
+              Financial assistant
+            </h2>
+            <p className="mt-0.5 text-xs text-[#777281]">
               {selectedCompany
                 ? `Context: ${selectedCompany.name} (${selectedCompany.ticker})`
                 : "Select a company to begin"}
             </p>
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-[10px] text-[#96919F]">
               Live AI when configured; otherwise answers use a labeled local
               demo.
             </p>
           </div>
         </div>
 
-        <label className="flex items-center gap-2 text-sm text-slate-400">
+        <label className="flex flex-col gap-1 text-[10px] font-semibold text-[#777281] sm:items-end">
           <Building2
             aria-hidden="true"
-            className="shrink-0 text-slate-500"
-            size={17}
+            className="sr-only"
+            size={15}
           />
-          <span className="sr-only">Company context</span>
+          <span>Company context</span>
           <select
             value={ticker}
             onChange={(event) => selectCompany(event.target.value)}
             disabled={!preferenceReady || isLoading}
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 outline-none transition focus:border-emerald-500 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
+            className="field-control min-w-56 disabled:cursor-wait disabled:opacity-60"
           >
             <option value="">Choose a company</option>
             {companies.map((company) => (
@@ -303,7 +305,7 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
         </label>
       </div>
       {storageMessage && (
-        <p role="status" className="border-b border-slate-800 px-4 py-2 text-xs text-amber-300 sm:px-6">
+        <p role="status" className="border-b border-[#E9E5EF] bg-[#FFFBF2] px-4 py-2 text-xs text-[#996B29] sm:px-5">
           {storageMessage}
         </p>
       )}
@@ -313,20 +315,20 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
         role="log"
         aria-label="Conversation"
         aria-live="polite"
-        className="h-[min(60vh,38rem)] min-h-[22rem] space-y-5 overflow-y-auto p-4 sm:p-6"
+        className="h-[min(60vh,38rem)] min-h-[22rem] space-y-5 overflow-y-auto bg-[#FDFCFD] p-4 sm:p-6"
       >
         {messages.length === 0 ? (
           <div className="flex min-h-full flex-col justify-center">
             <div className="mx-auto max-w-xl text-center">
-              <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-700 bg-slate-950 text-emerald-400">
-                <MessageCircle aria-hidden="true" size={22} />
+              <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-[5px] border border-[#E9E5EF] bg-white text-[#6541C1]">
+                <MessageCircle aria-hidden="true" size={19} />
               </span>
-              <h3 className="mt-4 text-lg font-semibold text-white">
+              <h3 className="mt-4 text-base font-semibold text-[#302C39]">
                 {selectedCompany
                   ? `Explore ${selectedCompany.name}`
                   : "Start with a company"}
               </h3>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
+              <p className="mt-2 text-sm leading-6 text-[#777281]">
                 {selectedCompany
                   ? "Ask a question below or choose a suggestion. You can ask follow-ups without repeating the company name."
                   : "Choose a company above to load its profile and illustrative financial context into the conversation."}
@@ -339,7 +341,7 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
                   type="button"
                   disabled={!selectedCompany || isLoading}
                   onClick={() => void sendMessage(question)}
-                  className="rounded-xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left text-sm text-slate-300 transition hover:border-emerald-500/50 hover:text-white focus-visible:outline-2 focus-visible:outline-emerald-400 disabled:cursor-not-allowed disabled:opacity-45"
+                  className="border border-[#E9E5EF] bg-white px-3.5 py-3 text-left text-xs leading-5 text-[#514D59] transition hover:border-[#CFC3E5] hover:bg-[#FBF9FE] focus-visible:outline-2 focus-visible:outline-[#6541C1] disabled:cursor-not-allowed disabled:opacity-45"
                 >
                   {question}
                 </button>
@@ -355,15 +357,15 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
               }`}
             >
               {message.role === "assistant" && (
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[5px] bg-[#EEE9F8] text-[#6541C1]">
                   <Sparkles aria-hidden="true" size={16} />
                 </span>
               )}
               <div
-                className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-6 ${
+                className={`max-w-[88%] px-4 py-3 text-sm leading-6 ${
                   message.role === "user"
-                    ? "bg-emerald-500 text-slate-950"
-                    : "border border-slate-800 bg-slate-950 text-slate-200"
+                    ? "bg-[#EEE9F8] text-[#45258B]"
+                    : "border border-[#E9E5EF] bg-white text-[#514D59]"
                 }`}
               >
                 <p className="mb-1 flex items-center gap-1.5 text-xs font-semibold opacity-70">
@@ -386,7 +388,7 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
                 </p>
               </div>
               {message.role === "user" && (
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-300">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[5px] bg-[#F0EDF4] text-[#777281]">
                   <UserRound aria-hidden="true" size={16} />
                 </span>
               )}
@@ -397,9 +399,9 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
         {isLoading && (
           <div
             role="status"
-            className="flex items-center gap-3 text-sm text-slate-400"
+            className="flex items-center gap-3 text-sm text-[#777281]"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
+            <span className="flex h-8 w-8 items-center justify-center rounded-[5px] bg-[#EEE9F8] text-[#6541C1]">
               <LoaderCircle
                 aria-hidden="true"
                 className="animate-spin"
@@ -411,11 +413,11 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
         )}
       </div>
 
-      <div className="border-t border-slate-800 p-4 sm:p-6">
+      <div className="border-t border-[#E9E5EF] bg-white p-4 sm:p-5">
         {error && (
           <p
             role="alert"
-            className="mb-3 rounded-lg border border-rose-500/25 bg-rose-500/10 px-4 py-3 text-sm text-rose-200"
+            className="mb-3 border border-[#EBCFCF] bg-[#FFF9F8] px-4 py-3 text-sm text-[#A44747]"
           >
             {error}
           </p>
@@ -424,7 +426,7 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
           <label htmlFor="assistant-message" className="sr-only">
             Ask a financial question
           </label>
-          <div className="flex items-end gap-3 rounded-xl border border-slate-700 bg-slate-950 p-2 transition focus-within:border-emerald-500">
+          <div className="flex items-end gap-3 border border-[#E9E5EF] bg-white p-2 transition focus-within:border-[#6541C1] focus-within:shadow-[0_0_0_3px_rgba(101,65,193,0.08)]">
             <textarea
               id="assistant-message"
               value={draft}
@@ -438,13 +440,13 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
                   ? `Ask about ${selectedCompany.name}...`
                   : "Choose a company to ask a question..."
               }
-              className="max-h-36 min-h-12 flex-1 resize-y bg-transparent px-2 py-2 text-sm leading-6 text-white outline-none placeholder:text-slate-500 disabled:cursor-not-allowed"
+              className="max-h-36 min-h-12 flex-1 resize-y bg-transparent px-2 py-2 text-sm leading-6 text-[#302C39] outline-none placeholder:text-[#96919F] disabled:cursor-not-allowed"
             />
             <button
               type="submit"
               disabled={!selectedCompany || !draft.trim() || isLoading}
               aria-label="Send message"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500 text-slate-950 transition hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-500"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[4px] bg-[#6541C1] text-white transition hover:bg-[#45258B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6541C1] disabled:cursor-not-allowed disabled:bg-[#E9E5EF] disabled:text-[#96919F]"
             >
               {isLoading ? (
                 <LoaderCircle
@@ -457,7 +459,7 @@ function AssistantChat({ companies, selectedCompany }: AssistantChatProps) {
               )}
             </button>
           </div>
-          <div className="mt-3 flex flex-col gap-2 text-xs leading-5 text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-3 flex flex-col gap-2 text-[10px] leading-5 text-[#96919F] sm:flex-row sm:items-center sm:justify-between">
             <span>Enter to send · Shift + Enter for a new line</span>
             <span>Educational information only, not investment advice.</span>
           </div>

@@ -19,7 +19,7 @@ function formatBillions(value: number) {
 export default function RevenueChart({ data }: RevenueChartProps) {
   if (data.length === 0) {
     return (
-      <p className="rounded-lg border border-slate-800 bg-slate-950 p-6 text-sm text-slate-400">
+      <p className="border border-dashed border-[#DCD6E5] bg-[#FBFAFF] p-6 text-sm text-[#777281]">
         No historical financial data is available for this company.
       </p>
     );
@@ -63,13 +63,13 @@ export default function RevenueChart({ data }: RevenueChartProps) {
                 x2={chartWidth - chartPadding.right}
                 y1={tickY}
                 y2={tickY}
-                stroke="#334155"
+                stroke="#E9E5EF"
                 strokeDasharray="4 6"
               />
               <text
                 x={chartPadding.left - 10}
                 y={tickY + 4}
-                fill="#94a3b8"
+                fill="#96919F"
                 fontSize="11"
                 textAnchor="end"
               >
@@ -82,33 +82,33 @@ export default function RevenueChart({ data }: RevenueChartProps) {
         <path
           d={linePath("revenue")}
           fill="none"
-          stroke="#34d399"
+          stroke="#6541C1"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth="3"
+          strokeWidth="2.5"
         />
         <path
           d={linePath("netIncome")}
           fill="none"
-          stroke="#38bdf8"
+          stroke="#23966B"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth="3"
+          strokeWidth="2.5"
         />
 
         {data.map((point, index) => (
           <g key={point.year}>
-            <circle cx={x(index)} cy={y(point.revenue)} r="4" fill="#34d399" />
+            <circle cx={x(index)} cy={y(point.revenue)} r="3.5" fill="#6541C1" />
             <circle
               cx={x(index)}
               cy={y(point.netIncome)}
-              r="4"
-              fill="#38bdf8"
+              r="3.5"
+              fill="#23966B"
             />
             <text
               x={x(index)}
               y={chartHeight - 12}
-              fill="#94a3b8"
+              fill="#96919F"
               fontSize="12"
               textAnchor="middle"
             >

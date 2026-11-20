@@ -54,34 +54,37 @@ export default function SavedCompanies({
   return (
     <section
       aria-labelledby="saved-companies-heading"
-      className="mt-8 rounded-xl border border-slate-800 bg-slate-900/70 p-5"
+      className="surface-card p-4 sm:p-5"
     >
       <div className="flex items-center gap-2">
-        <Bookmark aria-hidden="true" size={17} className="text-emerald-400" />
-        <h2 id="saved-companies-heading" className="font-semibold text-white">
+        <Bookmark aria-hidden="true" size={16} className="text-[#6541C1]" />
+        <h2
+          id="saved-companies-heading"
+          className="text-sm font-semibold text-[#302C39]"
+        >
           Saved companies
         </h2>
-        <span className="text-xs text-slate-500">this browser only</span>
+        <span className="text-[10px] text-[#96919F]">This browser only</span>
       </div>
 
       {savedCompanies.length > 0 ? (
-        <ul className="mt-4 flex flex-wrap gap-2">
+        <ul className="mt-3 divide-y divide-[#F0EDF4] border-t border-[#F0EDF4]">
           {savedCompanies.map((company) => (
             <li
               key={company.ticker}
-              className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2"
+              className="flex items-center gap-3 py-2.5"
             >
               <Link
                 href={`/companies/${company.ticker}`}
-                className="text-sm font-medium text-slate-200 transition hover:text-emerald-300"
+                className="min-w-0 flex-1 truncate text-xs font-medium text-[#514D59] transition hover:text-[#6541C1]"
               >
-                {company.name} <span className="text-slate-500">({company.ticker})</span>
+                {company.name}                 <span className="text-[#96919F]">({company.ticker})</span>
               </Link>
               <button
                 type="button"
                 onClick={() => removeSaved(company.ticker)}
                 aria-label={`Remove ${company.name} from saved companies`}
-                className="rounded p-1 text-slate-500 transition hover:bg-slate-800 hover:text-white focus-visible:outline-2 focus-visible:outline-emerald-400"
+                className="flex h-7 w-7 items-center justify-center text-[#96919F] transition hover:bg-[#F7F6FA] hover:text-[#45258B] focus-visible:outline-2 focus-visible:outline-[#6541C1]"
               >
                 <X aria-hidden="true" size={14} />
               </button>
@@ -89,13 +92,13 @@ export default function SavedCompanies({
           ))}
         </ul>
       ) : (
-        <p className="mt-2 text-sm text-slate-500">
-          Save a company from its profile to keep a shortcut here.
+        <p className="mt-2 text-xs leading-5 text-[#96919F]">
+          Save a company profile to keep a shortcut here.
         </p>
       )}
 
       {storageError && (
-        <p role="status" className="mt-3 text-xs text-amber-300">
+        <p role="status" className="mt-3 text-xs text-[#996B29]">
           {storageError}
         </p>
       )}

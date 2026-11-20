@@ -285,7 +285,7 @@ export default function CompanyComparison({
     <div className="space-y-8">
       <section
         aria-labelledby="company-selection-heading"
-        className="rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6"
+        className="surface-card p-4 sm:p-5"
       >
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -295,16 +295,16 @@ export default function CompanyComparison({
             >
               Select companies
             </h2>
-            <p className="mt-1 text-sm text-slate-400">
+            <p className="mt-1 text-xs text-[#777281]">
               Choose 2–4 companies. Remove one to replace it with another.
             </p>
           </div>
-          <p className="text-sm text-slate-500" aria-live="polite">
+          <p className="text-xs tabular-nums text-[#777281]" aria-live="polite">
             {selectedCompanies.length} selected · maximum 4
           </p>
         </div>
         {storageError && (
-          <p role="status" className="mt-2 text-xs text-amber-300">
+          <p role="status" className="mt-2 text-xs text-[#996B29]">
             {storageError}
           </p>
         )}
@@ -313,33 +313,33 @@ export default function CompanyComparison({
           {selectedCompanies.map((company) => (
             <div
               key={company.ticker}
-              className="flex min-w-0 items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-3"
+              className="flex min-w-0 items-center gap-3 border border-[#D8CDEB] bg-[#FBF9FE] p-3"
             >
               <span
                 aria-hidden="true"
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${company.accent}`}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[4px] bg-[#EEE9F8] text-[10px] font-bold text-[#45258B]"
               >
                 {company.initials}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-white">
+                <p className="truncate text-xs font-semibold text-[#302C39]">
                   {company.name}
                 </p>
-                <p className="text-xs text-slate-400">{company.ticker}</p>
+                <p className="text-[10px] text-[#96919F]">{company.ticker}</p>
               </div>
               <button
                 type="button"
                 disabled={!storageReady}
                 aria-label={`Remove ${company.name}`}
                 onClick={() => removeCompany(company.ticker)}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-800 hover:text-white focus-visible:outline-2 focus-visible:outline-emerald-400 disabled:cursor-wait disabled:opacity-50"
+                className="flex h-8 w-8 shrink-0 items-center justify-center text-[#96919F] transition hover:bg-[#F0EDF4] hover:text-[#45258B] focus-visible:outline-2 focus-visible:outline-[#6541C1] disabled:cursor-wait disabled:opacity-50"
               >
                 <X aria-hidden="true" size={16} />
               </button>
             </div>
           ))}
           {selectedCompanies.length === 0 && (
-            <p className="rounded-xl border border-dashed border-slate-700 p-4 text-sm text-slate-500 sm:col-span-2 lg:col-span-4">
+            <p className="border border-dashed border-[#DCD6E5] px-4 py-3 text-xs text-[#777281] sm:col-span-2 lg:col-span-4">
               No companies selected yet. Search below and add at least two to
               start comparing.
             </p>
@@ -348,14 +348,14 @@ export default function CompanyComparison({
 
         <label
           htmlFor="compare-search"
-          className="mb-2 mt-6 block text-sm font-medium text-slate-300"
+          className="mb-2 mt-6 block text-xs font-semibold text-[#514D59]"
         >
           Search available companies
         </label>
-        <div className="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-950 px-4 transition focus-within:border-emerald-500">
+        <div className="flex items-center gap-3 border border-[#E9E5EF] bg-white px-3.5 transition focus-within:border-[#6541C1] focus-within:shadow-[0_0_0_3px_rgba(101,65,193,0.08)]">
           <Search
             aria-hidden="true"
-            className="shrink-0 text-slate-500"
+            className="shrink-0 text-[#96919F]"
             size={18}
           />
           <input
@@ -364,7 +364,7 @@ export default function CompanyComparison({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search by name, ticker, industry, or sector"
-            className="h-12 w-full bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+            className="h-11 w-full bg-transparent text-sm text-[#302C39] outline-none placeholder:text-[#96919F]"
           />
         </div>
 
@@ -377,19 +377,19 @@ export default function CompanyComparison({
               return (
                 <div
                   key={company.ticker}
-                  className="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/60 p-3"
+                  className="flex items-center gap-3 border border-[#E9E5EF] bg-white p-3"
                 >
                   <span
                     aria-hidden="true"
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${company.accent}`}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[4px] bg-[#EEE9F8] text-[10px] font-bold text-[#45258B]"
                   >
                     {company.initials}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-white">
+                    <p className="truncate text-xs font-semibold text-[#302C39]">
                       {company.name}
                     </p>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-[10px] text-[#96919F]">
                       {company.ticker} · {company.industry}
                     </p>
                   </div>
@@ -402,7 +402,7 @@ export default function CompanyComparison({
                         : `Add ${company.name}`
                     }
                     onClick={() => addCompany(company.ticker)}
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-700 text-emerald-400 transition hover:border-emerald-500 hover:bg-emerald-500/10 focus-visible:outline-2 focus-visible:outline-emerald-400 disabled:cursor-not-allowed disabled:text-slate-600 disabled:hover:border-slate-700 disabled:hover:bg-transparent"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center border border-[#E9E5EF] text-[#6541C1] transition hover:border-[#CFC3E5] hover:bg-[#F7F4FC] focus-visible:outline-2 focus-visible:outline-[#6541C1] disabled:cursor-not-allowed disabled:text-[#B9B3C1] disabled:hover:border-[#E9E5EF] disabled:hover:bg-transparent"
                   >
                     {isSelected ? (
                       <Check aria-hidden="true" size={17} />
@@ -415,7 +415,7 @@ export default function CompanyComparison({
             })}
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-slate-800 bg-slate-950 p-5 text-center text-sm text-slate-400">
+          <p className="mt-4 border border-[#E9E5EF] bg-white p-5 text-center text-sm text-[#777281]">
             No companies match that search.
           </p>
         )}
@@ -425,12 +425,12 @@ export default function CompanyComparison({
         <>
           <aside
             role="note"
-            className="flex items-start gap-3 rounded-xl border border-amber-500/25 bg-amber-500/5 p-4 text-sm leading-6 text-amber-100/80"
+            className="demo-note flex items-start gap-3 px-4 py-3 text-xs leading-5"
           >
             <Info
               aria-hidden="true"
-              className="mt-0.5 shrink-0 text-amber-400"
-              size={18}
+              className="mt-0.5 shrink-0 text-[#6541C1]"
+              size={15}
             />
             <p>
               The current financial figures are illustrative mock values, not
@@ -446,11 +446,11 @@ export default function CompanyComparison({
               <div>
                 <h2
                   id="comparison-table-heading"
-                  className="text-xl font-semibold"
+                  className="text-base font-semibold tracking-[-0.02em] text-[#302C39]"
                 >
                   Side-by-side comparison
                 </h2>
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-xs text-[#777281]">
                   Amounts use the catalog&apos;s NGN billions unit; periods are
                   not specified for profile metrics.
                 </p>
@@ -459,7 +459,7 @@ export default function CompanyComparison({
                 type="button"
                 onClick={() => void generateInsights()}
                 disabled={isGenerating}
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300 disabled:cursor-not-allowed disabled:opacity-60"
+                className="primary-button shrink-0"
               >
                 <Sparkles
                   aria-hidden="true"
@@ -473,7 +473,7 @@ export default function CompanyComparison({
             {insightError && (
               <p
                 role="alert"
-                className="mb-4 flex items-start gap-2 rounded-xl border border-rose-500/25 bg-rose-500/10 p-4 text-sm text-rose-200"
+                className="mb-4 flex items-start gap-2 border border-[#EBCFCF] bg-[#FFF9F8] p-4 text-sm text-[#A44747]"
               >
                 <AlertCircle
                   aria-hidden="true"
@@ -487,18 +487,18 @@ export default function CompanyComparison({
             {insights && (
               <div
                 aria-live="polite"
-                className="mb-5 rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-5 sm:p-6"
+                className="mb-5 border border-[#D8CDEB] bg-white p-5"
               >
-                <h3 className="flex items-center gap-2 font-semibold text-emerald-300">
-                  <Sparkles aria-hidden="true" size={17} />
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-[#45258B]">
+                  <Sparkles aria-hidden="true" size={15} />
                   {insightMode === "demo"
                     ? "Simulated demo insights"
                     : "AI-generated comparison"}
                 </h3>
-                <p className="mt-4 whitespace-pre-wrap text-sm leading-7 text-slate-200">
+                <p className="mt-3 whitespace-pre-wrap border-t border-[#F0EDF4] pt-3 text-sm leading-6 text-[#514D59]">
                   {insights}
                 </p>
-                <p className="mt-4 border-t border-emerald-500/15 pt-3 text-xs leading-5 text-slate-400">
+                <p className="mt-3 text-[10px] leading-5 text-[#96919F]">
                   {insightMode === "demo"
                     ? "Generated locally from illustrative catalog data, not by a live AI model."
                     : "Generated from the illustrative catalog data above."}{" "}
@@ -507,13 +507,13 @@ export default function CompanyComparison({
               </div>
             )}
 
-            <div className="overflow-x-auto rounded-xl border border-slate-800">
-              <table className="w-full min-w-[880px] border-collapse text-left text-sm">
-                <thead className="bg-slate-950">
+            <div className="surface-card overflow-x-auto">
+              <table className="w-full min-w-[880px] border-collapse text-left text-xs">
+                <thead className="bg-[#FBFAFF]">
                   <tr>
                     <th
                       scope="col"
-                      className="sticky left-0 z-10 min-w-48 border-b border-slate-800 bg-slate-950 px-4 py-4 font-medium text-slate-400"
+                      className="sticky left-0 z-10 min-w-48 border-b border-[#E9E5EF] bg-[#FBFAFF] px-4 py-3 font-semibold text-[#777281]"
                     >
                       Metric
                     </th>
@@ -521,20 +521,20 @@ export default function CompanyComparison({
                       <th
                         key={company.ticker}
                         scope="col"
-                        className="min-w-44 border-b border-slate-800 px-4 py-4"
+                        className="min-w-44 border-b border-[#E9E5EF] px-4 py-3"
                       >
                         <div className="flex items-center gap-3">
                           <span
                             aria-hidden="true"
-                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[10px] font-bold ${company.accent}`}
+                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] bg-[#EEE9F8] text-[10px] font-bold text-[#45258B]"
                           >
                             {company.initials}
                           </span>
                           <span>
-                            <span className="block font-semibold text-white">
+                            <span className="block font-semibold text-[#302C39]">
                               {company.name}
                             </span>
-                            <span className="mt-0.5 block text-xs text-slate-500">
+                            <span className="mt-0.5 block text-[10px] text-[#96919F]">
                               {company.ticker}
                             </span>
                           </span>
@@ -549,7 +549,7 @@ export default function CompanyComparison({
                       <th
                         scope="rowgroup"
                         colSpan={selectedCompanies.length + 1}
-                        className="border-b border-slate-800 bg-slate-900/80 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-emerald-400"
+                        className="border-b border-[#E9E5EF] bg-[#F7F6FA] px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#6541C1]"
                       >
                         {group.title}
                       </th>
@@ -557,11 +557,11 @@ export default function CompanyComparison({
                     {group.metrics.map((metric) => (
                       <tr
                         key={metric.label}
-                        className="border-b border-slate-800/80 last:border-0"
+                        className="border-b border-[#F0EDF4] last:border-0"
                       >
                         <th
                           scope="row"
-                          className="sticky left-0 bg-slate-900 px-4 py-3.5 font-medium text-slate-300"
+                          className="sticky left-0 bg-white px-4 py-3 font-medium text-[#514D59]"
                         >
                           {metric.label}
                         </th>
@@ -571,7 +571,7 @@ export default function CompanyComparison({
                             <td
                               key={company.ticker}
                               className={`px-4 py-3.5 ${
-                                value ? "text-slate-200" : "text-slate-500"
+                                value ? "text-[#302C39]" : "text-[#96919F]"
                               }`}
                             >
                               {value || "Not available"}
@@ -590,30 +590,30 @@ export default function CompanyComparison({
             <div className="mb-5">
               <h2
                 id="visual-comparison-heading"
-                className="text-xl font-semibold"
+                className="text-base font-semibold tracking-[-0.02em] text-[#302C39]"
               >
                 Visual comparison
               </h2>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-xs text-[#777281]">
                 Charts use only shared historical years and the dataset&apos;s
                 stated NGN billions unit.
               </p>
             </div>
             <div className="grid gap-5 xl:grid-cols-2">
-              <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 sm:p-6">
-                <h3 className="mb-1 font-semibold text-white">
+              <div className="surface-card p-4 sm:p-5">
+                <h3 className="mb-1 text-sm font-semibold text-[#302C39]">
                   Historical revenue
                 </h3>
-                <p className="mb-5 text-xs text-slate-500">
+                <p className="mb-4 text-[10px] text-[#96919F]">
                   Grouped by year · illustrative NGN billions
                 </p>
                 <HistoricalRevenueBars companies={selectedCompanies} />
               </div>
-              <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 sm:p-6">
-                <h3 className="mb-1 font-semibold text-white">
+              <div className="surface-card p-4 sm:p-5">
+                <h3 className="mb-1 text-sm font-semibold text-[#302C39]">
                   Historical net income
                 </h3>
-                <p className="mb-5 text-xs text-slate-500">
+                <p className="mb-4 text-[10px] text-[#96919F]">
                   Shared years only · illustrative NGN billions
                 </p>
                 <HistoricalNetIncomeLines companies={selectedCompanies} />
@@ -622,16 +622,16 @@ export default function CompanyComparison({
           </section>
         </>
       ) : (
-        <div className="rounded-2xl border border-dashed border-slate-800 bg-slate-900/60 px-6 py-12 text-center">
-          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-slate-700 bg-slate-950 text-emerald-400">
-            <Info aria-hidden="true" size={22} />
+        <div className="surface-card border-dashed px-6 py-12 text-center">
+          <span className="mx-auto flex h-10 w-10 items-center justify-center border border-[#E9E5EF] bg-[#FBFAFF] text-[#6541C1]">
+            <Info aria-hidden="true" size={19} />
           </span>
-          <h2 className="mt-4 text-lg font-semibold text-white">
+          <h2 className="mt-4 text-base font-semibold text-[#302C39]">
             {selectedCompanies.length === 0
               ? "Your comparison is empty"
               : "Add one more company"}
           </h2>
-          <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-400">
+          <p className="mx-auto mt-2 max-w-md text-xs leading-5 text-[#777281]">
             Select at least two companies to see the comparison table, charts,
             and AI insights. You can compare up to four.
           </p>

@@ -3,19 +3,21 @@ import { ArrowLeft, SearchX } from "lucide-react";
 
 export default function CompanyNotFound() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-white">
-      <section className="max-w-md text-center">
-        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900 text-emerald-400">
+    <main className="flex min-h-[60vh] items-center justify-center px-6">
+      <section className="surface-card w-full max-w-md px-7 py-10 text-center">
+        <span className="mx-auto flex h-12 w-12 items-center justify-center bg-[#EEE9F8] text-[#6541C1]">
           <SearchX aria-hidden="true" size={26} />
         </span>
-        <h1 className="mt-6 text-2xl font-bold">Company profile not found</h1>
-        <p className="mt-3 text-sm leading-6 text-slate-400">
+        <h1 className="mt-5 text-xl font-semibold tracking-[-0.03em] text-[#201D29]">
+          Company profile not found
+        </h1>
+        <p className="mt-3 text-sm leading-6 text-[#777281]">
           We don&apos;t have a company profile for that ticker yet. Browse the
           available companies to find a profile.
         </p>
         <Link
           href="/companies"
-          className="mt-7 inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400"
+          className="primary-button mt-6"
         >
           <ArrowLeft aria-hidden="true" size={16} />
           Back to exploration

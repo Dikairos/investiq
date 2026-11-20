@@ -210,9 +210,9 @@ function InsightSection({
   mode: "demo" | "live";
 }) {
   return (
-    <section className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
-      <p className="mt-1 text-xs text-slate-500">
+    <section className="surface-card p-5">
+      <h3 className="text-sm font-semibold text-[#302C39]">{title}</h3>
+      <p className="mt-1 text-[10px] text-[#96919F]">
         {mode === "demo"
           ? "Simulated sample content, not based on the uploaded PDF."
           : "AI-generated analysis; source references are included when available."}
@@ -222,17 +222,17 @@ function InsightSection({
           {items.map((item, index) => (
             <li
               key={`${title}-${index}`}
-              className="rounded-xl border border-slate-800 bg-slate-950/60 p-4"
+              className="border border-[#F0EDF4] bg-[#FDFCFD] p-4"
             >
-              <p className="text-sm leading-6 text-slate-200">{item.text}</p>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="text-sm leading-6 text-[#514D59]">{item.text}</p>
+              <p className="mt-2 text-[10px] text-[#96919F]">
                 {addSource(item.source)}
               </p>
             </li>
           ))}
         </ul>
       ) : (
-        <p className="mt-3 text-sm text-slate-500">
+        <p className="mt-3 text-xs text-[#96919F]">
           No supported findings were identified in this section.
         </p>
       )}
@@ -248,14 +248,16 @@ function ReportFieldCard({
   field: ReportField;
 }) {
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-      <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+    <div className="border border-[#F0EDF4] bg-[#FDFCFD] p-4">
+      <p className="text-[10px] font-semibold uppercase tracking-wide text-[#96919F]">
         {label}
       </p>
-      <p className="mt-2 break-words text-sm font-semibold text-white">
+      <p className="mt-2 break-words text-sm font-semibold text-[#302C39]">
         {field.value ?? "Unavailable in extracted text"}
       </p>
-      <p className="mt-2 text-xs text-slate-500">{addSource(field.source)}</p>
+      <p className="mt-2 text-[10px] leading-4 text-[#96919F]">
+        {addSource(field.source)}
+      </p>
     </div>
   );
 }
@@ -402,16 +404,16 @@ export default function ReportAnalyzer() {
 
   return (
     <div className="mt-10">
-      <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-7">
+      <section className="surface-card p-5 sm:p-6">
         <div className="flex items-start gap-4">
-          <div className="rounded-xl bg-emerald-500/10 p-3 text-emerald-400">
-            <Upload aria-hidden="true" className="h-5 w-5" />
+          <div className="bg-[#EEE9F8] p-2.5 text-[#6541C1]">
+            <Upload aria-hidden="true" className="h-[18px] w-[18px]" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-white">
+            <h2 className="text-sm font-semibold text-[#302C39]">
               Upload a financial report
             </h2>
-            <p className="mt-1 text-sm leading-6 text-slate-400">
+            <p className="mt-1 text-xs leading-5 text-[#777281]">
               Add a text-searchable PDF. Extracted text is sent to OpenAI for
               analysis; the app processes it for this request only and does not
               save the document.
@@ -435,10 +437,10 @@ export default function ReportAnalyzer() {
             }
           }}
           onDrop={onDrop}
-          className={`mt-6 rounded-xl border border-dashed p-6 text-center transition sm:p-8 ${
+          className={`mt-5 border border-dashed p-6 text-center transition sm:p-8 ${
             dragging
-              ? "border-emerald-400 bg-emerald-500/10"
-              : "border-slate-700 bg-slate-950/50"
+              ? "border-[#6541C1] bg-[#F7F4FC]"
+              : "border-[#DCD6E5] bg-[#FBFAFF]"
           }`}
         >
           <input
@@ -455,13 +457,13 @@ export default function ReportAnalyzer() {
             <div className="mx-auto flex max-w-xl flex-col items-center gap-3 sm:flex-row sm:text-left">
               <FileText
                 aria-hidden="true"
-                className="h-8 w-8 shrink-0 text-emerald-400"
+                className="h-8 w-8 shrink-0 text-[#6541C1]"
               />
               <div className="min-w-0 flex-1">
-                <p className="break-all text-sm font-semibold text-white">
+                <p className="break-all text-sm font-semibold text-[#302C39]">
                   {file.name}
                 </p>
-                <p className="mt-1 text-xs text-slate-500">
+                <p className="mt-1 text-xs text-[#96919F]">
                   {formatFileSize(file.size)}
                 </p>
               </div>
@@ -469,7 +471,7 @@ export default function ReportAnalyzer() {
                 type="button"
                 onClick={clearReport}
                 disabled={isBusy}
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition hover:border-slate-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                className="secondary-button min-h-9 px-3 text-xs disabled:cursor-not-allowed"
               >
                 <X aria-hidden="true" className="h-4 w-4" />
                 Remove
@@ -479,18 +481,18 @@ export default function ReportAnalyzer() {
             <>
               <Upload
                 aria-hidden="true"
-                className="mx-auto h-8 w-8 text-slate-500"
+                className="mx-auto h-7 w-7 text-[#96919F]"
               />
-              <p className="mt-3 text-sm font-medium text-slate-200">
+              <p className="mt-3 text-sm font-medium text-[#514D59]">
                 Drag and drop a report here
               </p>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-[#96919F]">
                 PDF only, up to 12 MB
               </p>
               <button
                 type="button"
                 onClick={() => inputRef.current?.click()}
-                className="mt-4 rounded-lg border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-emerald-500/60 hover:text-emerald-300"
+                className="secondary-button mt-4 min-h-9 text-xs"
               >
                 Choose PDF
               </button>
@@ -500,7 +502,7 @@ export default function ReportAnalyzer() {
 
         {isBusy && (
           <div className="mt-5" aria-live="polite">
-            <div className="mb-2 flex items-center justify-between gap-4 text-xs text-slate-400">
+            <div className="mb-2 flex items-center justify-between gap-4 text-xs text-[#777281]">
               <span>
                 {status === "uploading"
                   ? `Uploading report${uploadProgress ? ` — ${uploadProgress}%` : ""}`
@@ -510,9 +512,9 @@ export default function ReportAnalyzer() {
                 <span className="tabular-nums">{uploadProgress}%</span>
               )}
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+            <div className="h-1.5 overflow-hidden bg-[#EEEAF2]">
               <div
-                className={`h-full rounded-full bg-emerald-400 transition-all ${
+                className={`h-full bg-[#6541C1] transition-all ${
                   status === "analyzing" ? "w-full animate-pulse" : ""
                 }`}
                 style={
@@ -523,7 +525,7 @@ export default function ReportAnalyzer() {
               />
             </div>
             {status === "analyzing" && (
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-2 text-xs text-[#96919F]">
                 Larger reports may take a little longer.
               </p>
             )}
@@ -535,7 +537,7 @@ export default function ReportAnalyzer() {
             <button
               type="button"
               onClick={analyzeReport}
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+              className="primary-button"
             >
               <Sparkles aria-hidden="true" className="h-4 w-4" />
               Analyze report
@@ -543,7 +545,7 @@ export default function ReportAnalyzer() {
             <button
               type="button"
               onClick={() => inputRef.current?.click()}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition hover:text-white"
+              className="px-3 py-2 text-xs font-medium text-[#777281] transition hover:text-[#6541C1]"
             >
               Replace PDF
             </button>
@@ -553,7 +555,7 @@ export default function ReportAnalyzer() {
         {error && (
           <div
             role="alert"
-            className="mt-5 flex items-start gap-3 rounded-xl border border-rose-900/70 bg-rose-950/40 p-4 text-sm text-rose-200"
+            className="mt-5 flex items-start gap-3 border border-[#EBCFCF] bg-[#FFF9F8] p-4 text-sm text-[#A44747]"
           >
             <AlertCircle
               aria-hidden="true"
@@ -566,21 +568,21 @@ export default function ReportAnalyzer() {
 
       {result && (
         <div className="mt-10 space-y-6">
-          <section className="rounded-2xl border border-emerald-900/60 bg-emerald-950/20 p-5 sm:p-6">
+          <section className="surface-card p-5">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex items-start gap-3">
-                <div className="rounded-xl bg-emerald-500/10 p-2.5 text-emerald-300">
-                  <ShieldCheck aria-hidden="true" className="h-5 w-5" />
+                <div className="bg-[#EAF5F0] p-2.5 text-[#23966B]">
+                  <ShieldCheck aria-hidden="true" className="h-[18px] w-[18px]" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-emerald-300">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#23966B]">
                     {result.mode === "demo" ? "Demo preview" : "Analysis complete"}
                   </p>
-                  <h2 className="mt-1 break-words text-xl font-semibold text-white">
+                  <h2 className="mt-1 break-words text-lg font-semibold text-[#302C39]">
                     {result.analysis.companyName.value ??
                       result.document.filename}
                   </h2>
-                  <p className="mt-1 text-sm text-slate-400">
+                  <p className="mt-1 text-xs text-[#777281]">
                     {result.analysis.reportingPeriod.value ??
                       "Reporting period unavailable"}
                     {result.analysis.reportingCurrency.value
@@ -592,7 +594,7 @@ export default function ReportAnalyzer() {
               <button
                 type="button"
                 onClick={clearReport}
-                className="self-start rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition hover:border-slate-500 hover:text-white"
+                className="secondary-button min-h-9 self-start px-3 text-xs"
               >
                 Remove report
               </button>
@@ -611,7 +613,7 @@ export default function ReportAnalyzer() {
                 field={result.analysis.reportingCurrency}
               />
             </div>
-            <p className="mt-4 break-words text-xs text-slate-500">
+            <p className="mt-4 break-words text-[10px] text-[#96919F]">
               {result.document.filename} ·{" "}
               {result.mode === "demo"
                 ? "pages and text were not processed"
@@ -622,9 +624,9 @@ export default function ReportAnalyzer() {
           {result.mode === "demo" && (
             <aside
               role="note"
-              className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 text-sm leading-6 text-amber-100/90"
+              className="border border-[#E8D9B9] bg-[#FFFBF2] p-4 text-xs leading-5 text-[#755F36]"
             >
-              <p className="font-semibold text-amber-300">
+              <p className="font-semibold text-[#755F36]">
                 Simulated analysis — not based on your uploaded PDF.
               </p>
               <p className="mt-1">
@@ -641,18 +643,18 @@ export default function ReportAnalyzer() {
             mode={result.mode}
           />
 
-          <section className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
-            <h3 className="text-lg font-semibold text-white">
+          <section className="surface-card p-5">
+            <h3 className="text-sm font-semibold text-[#302C39]">
               B. Key financial metrics
             </h3>
-            <p className="mt-1 text-sm text-slate-400">
+            <p className="mt-1 text-xs leading-5 text-[#777281]">
               Values are transcribed from the report where available. Missing
               figures are left unavailable rather than estimated.
             </p>
             <div className="mt-5 overflow-x-auto">
-              <table className="w-full min-w-[700px] border-collapse text-left text-sm">
+              <table className="w-full min-w-[700px] border-collapse text-left text-xs">
                 <thead>
-                  <tr className="border-b border-slate-700 text-xs uppercase tracking-wide text-slate-500">
+                  <tr className="border-b border-[#E9E5EF] bg-[#FBFAFF] text-[10px] uppercase tracking-wide text-[#777281]">
                     <th className="px-3 py-3 font-medium">Metric</th>
                     <th className="px-3 py-3 font-medium">Report value</th>
                     <th className="px-3 py-3 font-medium">Source</th>
@@ -667,22 +669,22 @@ export default function ReportAnalyzer() {
                     return (
                       <tr
                         key={key}
-                        className="border-b border-slate-800 align-top last:border-0"
+                        className="border-b border-[#F0EDF4] align-top last:border-0"
                       >
-                        <th className="px-3 py-4 font-medium text-slate-200">
+                        <th className="px-3 py-4 font-medium text-[#302C39]">
                           {label}
                         </th>
-                        <td className="px-3 py-4 text-slate-200">
+                        <td className="px-3 py-4 text-[#514D59]">
                           {field.value ?? (
-                            <span className="text-slate-500">
+                            <span className="text-[#96919F]">
                               Unavailable
                             </span>
                           )}
                         </td>
-                        <td className="px-3 py-4 text-xs leading-5 text-slate-500">
+                        <td className="px-3 py-4 text-[10px] leading-5 text-[#96919F]">
                           {addSource(field.source)}
                         </td>
-                        <td className="px-3 py-4 text-slate-400">
+                        <td className="px-3 py-4 text-[#777281]">
                           {field.interpretation ?? "No interpretation provided"}
                         </td>
                       </tr>
@@ -721,7 +723,7 @@ export default function ReportAnalyzer() {
             items={result.analysis.importantObservations}
             mode={result.mode}
           />
-          <p className="flex items-start gap-2 px-1 text-xs leading-5 text-slate-500">
+          <p className="flex items-start gap-2 px-1 text-xs leading-5 text-[#777281]">
             <ShieldCheck aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
             {result.mode === "demo"
               ? "Sample figures are illustrative and unrelated to the uploaded document. This demonstration is educational, not investment advice."

@@ -59,17 +59,17 @@ export default function CompanySaveButton({ ticker }: { ticker: string }) {
         onClick={toggleSaved}
         disabled={!isReady}
         aria-pressed={isSaved}
-        className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-700 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-emerald-500/60 hover:text-emerald-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 disabled:cursor-wait disabled:opacity-60"
+        className="secondary-button min-h-10 px-3 text-xs disabled:cursor-wait"
       >
         <Bookmark
           aria-hidden="true"
           size={17}
-          className={isSaved ? "fill-emerald-400 text-emerald-400" : ""}
+          className={isSaved ? "fill-[#6541C1] text-[#6541C1]" : "text-[#777281]"}
         />
         {isSaved ? "Saved" : "Save company"}
       </button>
       {storageError && (
-        <p role="status" className="mt-2 text-xs text-amber-300">
+        <p role="status" className="mt-2 max-w-48 text-[10px] leading-4 text-[#996B29]">
           {storageError}
         </p>
       )}

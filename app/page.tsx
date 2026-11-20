@@ -1,112 +1,175 @@
 import Link from "next/link";
+import {
+  ArrowRight,
+  Bot,
+  Building2,
+  FileSearch,
+  GitCompareArrows,
+  MoveUpRight,
+} from "lucide-react";
+import { companies } from "@/data/companies";
+
+const researchTools = [
+  {
+    href: "/compare",
+    label: "Company comparison",
+    description: "Review available financial indicators side by side.",
+    icon: GitCompareArrows,
+  },
+  {
+    href: "/reports",
+    label: "Report analysis",
+    description: "Explore a structured analysis of a financial PDF.",
+    icon: FileSearch,
+  },
+  {
+    href: "/assistant",
+    label: "Financial assistant",
+    description: "Ask plain-language questions with company context.",
+    icon: Bot,
+  },
+];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <Link
-          href="/"
-          className="text-2xl font-bold text-emerald-400"
-          aria-label="InvestIQ home"
-        >
-          InvestIQ
-        </Link>
-        <nav className="flex items-center gap-3 sm:gap-8">
-          <span className="hidden text-sm text-slate-400 lg:inline">
-            Understand Before You Invest.
-          </span>
+    <main className="space-y-8">
+      <section className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(17rem,0.65fr)]">
+        <div className="surface-card flex min-h-[300px] flex-col justify-between p-6 sm:p-8">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="page-kicker">Investment research, made clear</p>
+              <span className="border border-[#E9E5EF] px-2 py-1 text-[10px] font-medium uppercase tracking-wide text-[#777281]">
+                Nigeria edition
+              </span>
+            </div>
+            <h1 className="mt-5 max-w-2xl text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.13] tracking-[-0.055em] text-[#201D29]">
+              Understand the business behind the numbers.
+            </h1>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-[#777281] sm:text-[15px]">
+              Explore company profiles, compare key indicators, and make
+              financial reports easier to read—all in one focused workspace.
+            </p>
+          </div>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link href="/companies" className="primary-button">
+              Explore companies <ArrowRight aria-hidden="true" size={16} />
+            </Link>
+            <Link href="/compare" className="secondary-button">
+              Compare companies
+            </Link>
+          </div>
+        </div>
+
+        <aside className="surface-card flex flex-col justify-between p-6 sm:p-7">
+          <div>
+            <span className="flex h-10 w-10 items-center justify-center rounded-[5px] bg-[#EEE9F8] text-[#6541C1]">
+              <Building2 aria-hidden="true" size={19} />
+            </span>
+            <h3 className="mt-5 text-lg font-semibold tracking-[-0.025em] text-[#201D29]">
+              Built around company fundamentals
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-[#777281]">
+              Start with a business profile, then explore its financial context
+              and the questions worth asking.
+            </p>
+          </div>
           <Link
             href="/companies"
-            className="text-xs font-semibold text-slate-200 transition hover:text-emerald-400 sm:text-sm"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#6541C1] hover:text-[#45258B]"
           >
-            Explore companies
+            Browse the company directory
+            <MoveUpRight aria-hidden="true" size={15} />
           </Link>
-          <Link
-            href="/reports"
-            className="text-xs font-semibold text-slate-200 transition hover:text-emerald-400 sm:text-sm"
-          >
-            Analyze reports
-          </Link>
-        </nav>
-      </header>
-
-      <section className="mx-auto max-w-5xl px-6 py-24 text-center">
-        <p className="mb-5 text-sm font-semibold uppercase tracking-widest text-emerald-400">
-          Investment intelligence, simplified
-        </p>
-
-        <h1 className="text-4xl font-bold leading-tight md:text-6xl">
-          Make sense of the market.
-          <span className="block text-emerald-400">
-            Invest with understanding.
-          </span>
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
-          Explore company profiles, compare illustrative metrics, and try the
-          assistant and report tools with clear demo labels.
-        </p>
-
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/companies"
-            className="rounded-lg bg-emerald-500 px-7 py-3 font-semibold text-slate-950 transition hover:bg-emerald-400"
-          >
-            Explore companies
-          </Link>
-
-          <Link
-            href="/assistant"
-            className="rounded-lg border border-slate-700 px-7 py-3 font-semibold transition hover:border-emerald-500/60 hover:text-emerald-300"
-          >
-            Ask InvestIQ
-          </Link>
-        </div> 
+        </aside>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-5 px-6 pb-24 sm:grid-cols-2 xl:grid-cols-4">
-        <Link
-          href="/companies"
-          className="rounded-xl border border-slate-800 bg-slate-900 p-6 transition hover:border-emerald-500/60 focus-visible:outline-2 focus-visible:outline-emerald-400"
-        >
-          <h3 className="mb-3 text-xl font-semibold">Company Intelligence</h3>
-          <p className="text-slate-400">
-            Explore company profiles and clearly labeled sample financial data.
-          </p>
-        </Link>
+      <aside className="demo-note flex items-start gap-3 px-4 py-3.5 text-xs leading-5">
+        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#6541C1]" />
+        This public demo uses illustrative company and financial data. It is not
+        live market information or investment advice.
+      </aside>
 
-        <Link
-          href="/assistant"
-          className="rounded-xl border border-slate-800 bg-slate-900 p-6 transition hover:border-emerald-500/60 focus-visible:outline-2 focus-visible:outline-emerald-400"
-        >
-          <h3 className="mb-3 text-xl font-semibold">AI Financial Assistant</h3>
-          <p className="text-slate-400">
-            Ask sample questions and see when responses use local demo data.
-          </p>
-        </Link>
+      <section className="grid items-start gap-8 xl:grid-cols-[minmax(0,1.3fr)_minmax(18rem,0.7fr)]">
+        <div className="surface-card overflow-hidden">
+          <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[#E9E5EF] px-5 py-5 sm:px-6">
+            <div>
+              <p className="page-kicker">Company directory</p>
+              <h2 className="mt-1.5 text-lg font-semibold tracking-[-0.025em]">
+                Start your research
+              </h2>
+            </div>
+            <Link
+              href="/companies"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#6541C1] hover:text-[#45258B]"
+            >
+              View all <ArrowRight aria-hidden="true" size={14} />
+            </Link>
+          </div>
+          <div className="divide-y divide-[#F0EDF4]">
+            {companies.map((company) => (
+              <Link
+                key={company.ticker}
+                href={`/companies/${company.ticker}`}
+                className="group flex items-center gap-3 px-5 py-4 transition hover:bg-[#FCFBFE] sm:px-6"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[5px] bg-[#EEE9F8] text-xs font-bold text-[#45258B]">
+                  {company.initials}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold text-[#302C39]">
+                    {company.name}
+                  </span>
+                  <span className="mt-0.5 block truncate text-xs text-[#96919F]">
+                    {company.industry}
+                  </span>
+                </span>
+                <span className="hidden text-xs font-medium text-[#777281] sm:inline">
+                  {company.ticker}
+                </span>
+                <ArrowRight
+                  aria-hidden="true"
+                  size={16}
+                  className="ml-1 shrink-0 text-[#B4AFBB] transition group-hover:translate-x-0.5 group-hover:text-[#6541C1]"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
 
-        <Link
-          href="/compare"
-          className="rounded-xl border border-slate-800 bg-slate-900 p-6 transition hover:border-emerald-500/60 focus-visible:outline-2 focus-visible:outline-emerald-400"
-        >
-          <h3 className="mb-3 text-xl font-semibold">Company Comparison</h3>
-          <p className="text-slate-400">
-            Compare companies using meaningful financial indicators.
-          </p>
-          <p className="mt-4 text-sm font-semibold text-emerald-400">
-            Compare companies →
-          </p>
-        </Link>
-
-        <Link
-          href="/reports"
-          className="rounded-xl border border-slate-800 bg-slate-900 p-6 transition hover:border-emerald-500/60 focus-visible:outline-2 focus-visible:outline-emerald-400"
-        >
-          <h3 className="mb-3 text-xl font-semibold">Report Analysis</h3>
-          <p className="text-slate-400">
-            Select a PDF and explore a clearly labeled sample analysis.
-          </p>
-        </Link>
+        <div className="space-y-4">
+          <div className="px-1">
+            <p className="page-kicker">Research tools</p>
+            <h2 className="mt-1.5 text-lg font-semibold tracking-[-0.025em]">
+              Go deeper
+            </h2>
+          </div>
+          <div className="space-y-2.5">
+            {researchTools.map(({ href, label, description, icon: Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                className="surface-card group flex items-start gap-3.5 p-4 transition hover:border-[#D5CCE8]"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[5px] bg-[#F7F4FC] text-[#6541C1]">
+                  <Icon aria-hidden="true" size={17} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-semibold text-[#302C39]">
+                    {label}
+                  </span>
+                  <span className="mt-1 block text-xs leading-5 text-[#777281]">
+                    {description}
+                  </span>
+                </span>
+                <ArrowRight
+                  aria-hidden="true"
+                  size={15}
+                  className="mt-1 shrink-0 text-[#B4AFBB] transition group-hover:translate-x-0.5 group-hover:text-[#6541C1]"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
     </main>
   );
